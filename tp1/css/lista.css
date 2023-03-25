@@ -1,0 +1,21 @@
+.green{
+    background-color: #cef8c6;
+}
+.red{
+    background-color: #fd9f8b;
+}
+
+.table {
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+.demas {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

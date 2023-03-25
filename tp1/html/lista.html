@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Datos</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: center;
+    }
+  </style>
+  <link rel="stylesheet" href="../css/lista.css">
+</head>
+<!-- -----------------BODY----------------------- -->
+<body>
+<script>
+  function search() {
+    // Obtener el valor de búsqueda del campo de entrada
+    var query = document.getElementById("query").value;
+
+    // Realizar la solicitud fetch con los parámetros de búsqueda
+    fetch("http://168.194.207.98:8081/tp/lista.php?action=BUSCAR&query=" + encodeURIComponent(query))
+            .then(function(response) {
+              return response.json();
+            })
+            .then(function(data) {
+              // Limpiar la tabla existente
+              var table = document.getElementById("results");
+              table.innerHTML = "";
+
+              // Crear la fila de encabezado de la tabla
+              var headerRow = table.insertRow();
+              var headers = ["ID", "Usuario", "Bloqueado", "Nombre", "Apellido", "Bloquear", "Desbloquear"];
+              for (var i = 0; i < headers.length; i++) {
+                var header = headerRow.insertCell();
+                header.innerHTML = "<b>" + headers[i] + "</b>";
+              }
+
+              // Agregar las filas de datos a la tabla
+              for (var i = 0; i < data.length; i++) {
+                if (cell2.contains(response.json)== true) {
+                  var row = table.insertRow();
+                  var cell1 = row.insertCell();
+                  var cell2 = row.insertCell();
+                  var cell3 = row.insertCell();
+                  var cell4 = row.insertCell();
+                  var cell5 = row.insertCell();
+                  cell1.innerHTML = data[i].id;
+                  cell2.innerHTML = data[i].usuario;
+                  cell3.innerHTML = data[i].bloqueado;
+                  cell4.innerHTML = data[i].apellido;
+                  cell5.innerHTML = data[i].nombre;
+                }
+              }
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+  }
+</script>
+<div class="demas">
+<label for="query">Busqueda:</label>
+<input type="text" id="query">
+<button type="button" id="buscar">Buscar</button>
+<!-- ---------------------------- -->
+<h1>Lista de Datos</h1>
+</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Usuario</th>
+    <th>Bloqueado</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Bloquear</th>
+    <th>Desbloquear</th>
+  </tr>
+  </thead>
+  <tbody id="lista">
+  </tbody>
+</table>
+<!-- ---------------------------------------------------------------- -->
+<script>
+
+  /*const usersTable = document.getElementById('Tabla');
+
+  fetch('http://168.194.207.98:8081/tp/lista.php?action=BUSCAR')
+          .then(response => response.json())
+          .then(users => {
+            users.forEach(user => {
+              const row = usersTable.insertRow();
+              const idCell = row.insertCell();
+              const userCell = row.insertCell();
+              const blockCell = row.insertCell();
+              const nameCell = row.insertCell();
+              const lastNameCell = row.insertCell();
+              const actionCell = row.insertCell();
+              idCell.innerText = user.id;
+              userCell.innerText = user.usuario;
+              blockCell.innerText = user.bloqueado;
+              nameCell.innerText = user.nombre;
+              lastNameCell.innerText = user.apellido;
+              const boton = document.createElement("button");
+              boton.innerHTML = "Bloquear";
+              actionCell.appendChild(boton);
+            });
+
+          })
+
+          .catch(error => console.error(error)); */
+</script>
+<script src="../js/lista.js"></script>
+</body>
+</html>
